@@ -14,6 +14,7 @@ import { CaloriesPipe } from './calories.pipe'
     </select>
   </div>
   <div *ngFor="let food of childFoodList | calories:selectedCalorieLevel" class='well'>
+  <button (click)="deleteClicked(food)" class='btn pull-right'>X</button>
     <h4>{{ food.name }}</h4>
     <p><b>Details:</b> {{ food.details }}</p>
     <p><b>Calories:</b> {{ food.calories}}</p>
@@ -25,14 +26,19 @@ import { CaloriesPipe } from './calories.pipe'
 export class FoodListComponent {
   @Input() childFoodList: Food[];
   @Output() editFoodSender = new EventEmitter();
+  @Output() deleteFoodSender = new EventEmitter();
 
   public selectedCalorieLevel: string = 'all';
+
+  onChange(calorieLevel) {
+    this.selectedCalorieLevel = calorieLevel;
+  }
 
   editClicked(foodToEdit) {
     this.editFoodSender.emit(foodToEdit);
   }
 
-  onChange(calorieLevel) {
-    this.selectedCalorieLevel = calorieLevel;
+  deleteClicked(foodToDelete) {
+    this.deleteFoodSender.emit(foodToDelete);
   }
 }
