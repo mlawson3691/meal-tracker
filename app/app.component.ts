@@ -10,15 +10,13 @@ import { Food }      from './food.model';
       [childFoodList]="masterFoodList"
       (editFoodSender)="setFoodToEdit($event)"
     ></food-list>
-    <div class='row'>
-      <new-food class='col-sm-6'
-        (newFoodSender)="addNewFood($event)"
-      ></new-food>
-      <edit-food class='col-sm-6'
-        [foodToEdit]="selectedFood"
-        (doneEditSender)="doneEditing()"
-      ></edit-food>
-    </div>
+    <new-food
+      (newFoodSender)="addNewFood($event)"
+    ></new-food>
+    <edit-food
+      [foodToEdit]="selectedFood"
+      (doneEditSender)="doneEditing()"
+    ></edit-food>
   </div>
   `
 })

@@ -4,8 +4,8 @@ import { Food } from './food.model';
 @Component ({
   selector: 'new-food',
   template: `
-  <h3>Add a Food</h3>
   <div class='well'>
+    <h3>Add a Food</h3>
     <div class='form-group'>
       <label>Name:</label>
       <input #name class='form-control'>
