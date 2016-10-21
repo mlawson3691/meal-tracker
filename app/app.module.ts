@@ -1,12 +1,13 @@
-import { NgModule }          from '@angular/core';
-import { BrowserModule }     from '@angular/platform-browser';
-import { FormsModule }       from '@angular/forms';
-import { AppComponent }      from './app.component';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { AppComponent } from './app.component';
 import { FoodListComponent } from './food-list.component';
-import { NewFoodComponent }  from './new-food.component';
-import { EditFoodComponent }  from './edit-food.component';
-import { CalorieCountComponent }  from './calorie-count.component';
-import { CaloriesPipe }  from './calories.pipe';
+import { NewFoodComponent } from './new-food.component';
+import { EditFoodComponent } from './edit-food.component';
+import { CalorieCountComponent } from './calorie-count.component';
+import { CaloriesPipe } from './calories.pipe';
+import { MealPipe } from './meal.pipe';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { CaloriesPipe }  from './calories.pipe';
     NewFoodComponent,
     EditFoodComponent,
     CalorieCountComponent,
-    CaloriesPipe
+    CaloriesPipe,
+    MealPipe
   ],
   bootstrap: [
     AppComponent

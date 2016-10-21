@@ -5,20 +5,31 @@ import { CaloriesPipe } from './calories.pipe'
 @Component({
   selector: 'food-list',
   template: `
-  <div class='form-inline'>
+  <div class='filters'>
     <label>Sort by Calories: </label>
-    <select (change)='onChange($event.target.value)' class='form-control'>
+    <select (change)='onCalorieChange($event.target.value)' class='form-control'>
       <option value='all'>All</option>
       <option value='low'>Low</option>
       <option value='high'>High</option>
     </select>
   </div>
-  <div *ngFor="let food of childFoodList | calories:selectedCalorieLevel" class='well'>
-  <button (click)="deleteClicked(food)" class='btn pull-right'>X</button>
-    <h4>{{ food.name }}</h4>
+  <div class='filters'>
+    <label>Sort by Meal: </label>
+    <select (change)='onMealChange($event.target.value)' class='form-control'>
+      <option value='All'>All</option>
+      <option value='Breakfast'>Breakfast</option>
+      <option value='Lunch'>Lunch</option>
+      <option value='Dinner'>Dinner</option>
+      <option value='Snack'>Snack</option>
+    </select>
+  </div>
+  <br>
+  <div *ngFor="let food of childFoodList | calories:selectedCalorieLevel | meal:selectedMeal" class='well'>
+    <h4>{{ food.name }} <button (click)="editClicked(food)" class='btn btn-link'>Edit</button></h4>
+    <p><b>Meal:</b> {{ food.meal }}</p>
     <p><b>Details:</b> {{ food.details }}</p>
+    <button (click)="deleteClicked(food)" class='btn btn-link pull-right'>Delete</button>
     <p><b>Calories:</b> {{ food.calories}}</p>
-    <button (click)="editClicked(food)" class='btn'>Edit</button>
   </div>
   `
 })
@@ -29,9 +40,14 @@ export class FoodListComponent {
   @Output() deleteFoodSender = new EventEmitter();
 
   public selectedCalorieLevel: string = 'all';
+  public selectedMeal: string = 'All';
 
-  onChange(calorieLevel) {
+  onCalorieChange(calorieLevel) {
     this.selectedCalorieLevel = calorieLevel;
+  }
+
+  onMealChange(meal) {
+    this.selectedMeal = meal;
   }
 
   editClicked(foodToEdit) {

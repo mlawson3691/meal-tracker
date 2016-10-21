@@ -11,6 +11,15 @@ import { Food } from './food.model';
       <input #name class='form-control'>
     </div>
     <div class='form-group'>
+      <label>Meal:</label>
+      <select #meal class='form-control'>
+        <option value='Breakfast'>Breakfast</option>
+        <option value='Lunch'>Lunch</option>
+        <option value='Dinner'>Dinner</option>
+        <option value='Snack'>Snack</option>
+      </select>
+    </div>
+    <div class='form-group'>
       <label>Details:</label>
       <input #details class='form-control'>
     </div>
@@ -19,8 +28,9 @@ import { Food } from './food.model';
       <input #calories class='form-control'>
     </div>
     <button
-      (click)="addClicked(name.value, details.value, calories.value);
+      (click)="addClicked(name.value, meal.value, details.value, calories.value);
       name.value='';
+      meal.value='Breakfast';
       details.value='';
       calories.value='';
     ">Add</button>
@@ -32,10 +42,10 @@ export class NewFoodComponent {
   @Input() childFoodList: Food[];
   @Output() newFoodSender = new EventEmitter();
 
-  addClicked(name: string, details: string, calories: string){
+  addClicked(name: string, meal: string, details: string, calories: string){
     var calorieInt: number = parseInt(calories);
     var newId: number = this.childFoodList.length + 1;
-    var newFood = new Food(newId, name, details, calorieInt);
+    var newFood = new Food(newId, name, meal, details, calorieInt);
     this.newFoodSender.emit(newFood);
   }
 }

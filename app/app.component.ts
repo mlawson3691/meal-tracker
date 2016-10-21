@@ -6,35 +6,41 @@ import { Food } from './food.model';
   template: `
   <div class='container'>
     <h1>Meal Tracker</h1>
-    <calorie-count
-      [childDailyCalories]="masterDailyCalories"
-    ></calorie-count>
-    <food-list
-      [childFoodList]="masterFoodList"
-      (editFoodSender)="setFoodToEdit($event)"
-      (deleteFoodSender)="deleteFood($event)"
-    ></food-list>
-    <new-food
-      [childFoodList]="masterFoodList"
-      (newFoodSender)="addNewFood($event)"
-    ></new-food>
-    <edit-food
-      [foodToEdit]="selectedFood"
-      (doneEditSender)="doneEditing()"
-      (udpateCaloriesSender)="updateTotalCalories()"
-    ></edit-food>
+    <div class='row'>
+      <div class='col-sm-4'>
+        <calorie-count
+          [childDailyCalories]="masterDailyCalories"
+        ></calorie-count>
+        <edit-food
+          [foodToEdit]="selectedFood"
+          (doneEditSender)="doneEditing()"
+          (udpateCaloriesSender)="updateTotalCalories()"
+        ></edit-food>
+        <new-food
+          [childFoodList]="masterFoodList"
+          (newFoodSender)="addNewFood($event)"
+        ></new-food>
+      </div>
+      <div class='col-sm-8'>
+        <food-list
+          [childFoodList]="masterFoodList"
+          (editFoodSender)="setFoodToEdit($event)"
+          (deleteFoodSender)="deleteFood($event)"
+        ></food-list>
+      </div>
+    </div>
   </div>
   `
 })
 
 export class AppComponent {
   public masterFoodList: Food[] = [
-    new Food(1, 'Apple', 'A granny smith apple.', 100),
-    new Food(2, 'Steak', 'A special dinner out', 700),
-    new Food(3, 'Baked Potato', 'To go with the steak', 160),
-    new Food(4, 'Brussel Sprouts', 'Healthy side dish!', 40)
+    new Food(1, 'Apple', 'Breakfast', 'A granny smith apple.', 100),
+    new Food(2, 'Sandwich', 'Lunch', 'Ham and cheese', 300),
+    new Food(3, 'Steak', 'Dinner', 'A special dinner out', 700),
+    new Food(4, 'Brussel Sprouts', 'Dinner', 'Healthy side dish!', 40)
   ];
-  public masterDailyCalories: number = 1000;
+  public masterDailyCalories: number = 1140;
   public selectedFood: Food = null;
 
   addNewFood(foodToAdd) {

@@ -5,11 +5,20 @@ import { Food } from './food.model';
   selector: 'edit-food',
   template: `
   <div *ngIf="foodToEdit" class='well'>
-    <button (click)="doneClicked()" class='btn pull-right'>X</button>
+    <button (click)="doneClicked()" class='btn btn-link pull-right'>Close</button>
     <h3>Edit This Food</h3>
     <div class='form-group'>
       <label>Name:</label>
       <input [(ngModel)]="foodToEdit.name" class='form-control'>
+    </div>
+    <div class='form-group'>
+      <label>Meal:</label>
+      <select [(ngModel)]="foodToEdit.meal" class='form-control'>
+        <option value='Breakfast'>Breakfast</option>
+        <option value='Lunch'>Lunch</option>
+        <option value='Dinner'>Dinner</option>
+        <option value='Snack'>Snack</option>
+      </select>
     </div>
     <div class='form-group'>
       <label>Details:</label>
