@@ -24,12 +24,14 @@ import { CaloriesPipe } from './calories.pipe'
     </select>
   </div>
   <br>
-  <div *ngFor="let food of childFoodList | calories:selectedCalorieLevel | meal:selectedMeal" class='well'>
-    <h4>{{ food.name }} <button (click)="editClicked(food)" class='btn btn-link'>Edit</button></h4>
-    <p><b>Meal:</b> {{ food.meal }}</p>
-    <p><b>Details:</b> {{ food.details }}</p>
-    <button (click)="deleteClicked(food)" class='btn btn-link pull-right'>Delete</button>
-    <p><b>Calories:</b> {{ food.calories}}</p>
+  <div *ngFor="let food of childFoodList | calories:selectedCalorieLevel | meal:selectedMeal" class='food-item'>
+    <h4>{{ food.name }} <button (click)="editClicked(food)" class='btn btn-link '>Edit</button></h4>
+    <div class='well'>
+      <p><b>Meal:</b> {{ food.meal }}</p>
+      <p><b>Details:</b> {{ food.details }}</p>
+      <button (click)="deleteClicked(food)" class='btn btn-link pull-right'>Delete</button>
+      <p><b>Calories:</b> {{ food.calories}}</p>
+    </div>
   </div>
   `
 })

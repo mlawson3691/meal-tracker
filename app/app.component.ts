@@ -4,8 +4,12 @@ import { Food } from './food.model';
 @Component({
   selector: 'my-app',
   template: `
+  <div class='header'>
+    <div class='container'>
+      <h1>Calorie Counter</h1>
+    </div>
+  </div>
   <div class='container'>
-    <h1>Meal Tracker</h1>
     <div class='row'>
       <div class='col-sm-4'>
         <calorie-count

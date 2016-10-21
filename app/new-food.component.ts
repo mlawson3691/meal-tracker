@@ -27,7 +27,7 @@ import { Food } from './food.model';
       <label>Calories:</label>
       <input #calories class='form-control'>
     </div>
-    <button
+    <button class='btn btn-link pull-right'
       (click)="addClicked(name.value, meal.value, details.value, calories.value);
       name.value='';
       meal.value='Breakfast';

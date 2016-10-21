@@ -4,7 +4,10 @@ import { Food } from './food.model';
 @Component ({
   selector: 'calorie-count',
   template: `
-  <h3>Total Calories Today: {{ childDailyCalories }}</h3>
+  <div class='calorieCount'>
+    <h1>{{ childDailyCalories }}</h1>
+    <h3>Today's Calories</h3>
+  </div>
   `
 })
 
