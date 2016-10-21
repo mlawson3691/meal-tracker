@@ -9,6 +9,9 @@ import { Food }      from './food.model';
     <food-list
       [childFoodList]="masterFoodList"
     ></food-list>
+    <new-food
+      (newFoodSender)="addNewFood($event)"
+    ></new-food>
   </div>
   `
 })
@@ -21,4 +24,8 @@ export class AppComponent {
     new Food('Baked Potato', 'To go with the steak', 160),
     new Food('Brussel Sprouts', 'Healthy side dish!', 40)
   ];
+
+  addNewFood(foodToAdd) {
+    this.masterFoodList.push(foodToAdd);
+  }
 }
