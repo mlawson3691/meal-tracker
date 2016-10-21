@@ -8,10 +8,17 @@ import { Food }      from './food.model';
     <h1>Meal Tracker</h1>
     <food-list
       [childFoodList]="masterFoodList"
+      (editFoodSender)="setFoodToEdit($event)"
     ></food-list>
-    <new-food
-      (newFoodSender)="addNewFood($event)"
-    ></new-food>
+    <div class='row'>
+      <new-food class='col-sm-6'
+        (newFoodSender)="addNewFood($event)"
+      ></new-food>
+      <edit-food class='col-sm-6'
+        [foodToEdit]="selectedFood"
+        (doneEditSender)="doneEditing()"
+      ></edit-food>
+    </div>
   </div>
   `
 })
@@ -24,8 +31,17 @@ export class AppComponent {
     new Food('Baked Potato', 'To go with the steak', 160),
     new Food('Brussel Sprouts', 'Healthy side dish!', 40)
   ];
+  public selectedFood: Food = null;
 
   addNewFood(foodToAdd) {
     this.masterFoodList.push(foodToAdd);
+  }
+
+  setFoodToEdit(foodToEdit) {
+    this.selectedFood = foodToEdit;
+  }
+
+  doneEditing() {
+    this.selectedFood = null;
   }
 }
