@@ -5,7 +5,6 @@ import { CaloriesPipe } from './calories.pipe'
 @Component({
   selector: 'food-list',
   template: `
-  <h3>Total Calories Today: ____</h3>
   <div class='form-inline'>
     <label>Sort by Calories: </label>
     <select (change)='onChange($event.target.value)' class='form-control'>

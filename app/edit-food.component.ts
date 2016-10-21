@@ -17,7 +17,7 @@ import { Food } from './food.model';
     </div>
     <div class='form-group'>
       <label>Calories:</label>
-      <input [(ngModel)]="foodToEdit.calories" class='form-control'>
+      <input (change)="updateCalories($event.target.value)" value="{{foodToEdit.calories}}" class='form-control'>
     </div>
   </div>
   `
@@ -25,7 +25,14 @@ import { Food } from './food.model';
 
 export class EditFoodComponent {
   @Input() foodToEdit: Food;
+  @Output() udpateCaloriesSender = new EventEmitter();
   @Output() doneEditSender = new EventEmitter();
+
+  updateCalories(newCalories: string) {
+    var newCaloriesInt = parseInt(newCalories);
+    this.foodToEdit.calories = newCaloriesInt;
+    this.udpateCaloriesSender.emit();
+  }
 
   doneClicked(){
     this.doneEditSender.emit();
